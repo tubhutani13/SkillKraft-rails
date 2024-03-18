@@ -1,0 +1,211 @@
+/* Import Google Font */
+@import url("https://fonts.googleapis.com/css?family=Bricolage Grotesque");
+
+/* Define color variables */
+$blue: #080a45;
+
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navbar Header */
+.navbarHeader {
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  position: sticky;
+  right: 0;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--dl-color-gray-white);
+}
+
+/* Interactive Navbar Container */
+.navbarContainer {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding-left: 48px;
+  padding-right: 48px;
+  width: 100%;
+  height: 6vh;
+  z-index: 100;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  color: black;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 150%;
+  text-transform: uppercase;
+  font-family: "Bricolage Grotesque";
+}
+// Buttons
+.buttonFlat,
+.buttonFilled {
+  width: 100px;
+  color: $blue;
+  font-weight: bold;
+  font-family: "Bricolage Grotesque";
+  padding: 8px 24px;
+  border-radius: 12px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.buttonFlat {
+  margin-right: 24px;
+  cursor: pointer;
+}
+.buttonFilled {
+  color: white;
+  background-color: $blue;
+  cursor: pointer;
+}
+
+.buttonFlat:hover,
+.buttonFilled:hover {
+  background-color: rgba(8, 10, 69, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  color: #0a134e;
+}
+
+/* Desktop Menu */
+.desktopMenu {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Navbar Links */
+.navbarLinks {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Small Body Text */
+.bodySmall {
+  margin-right: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  font-family: "Bricolage Grotesque";
+}
+
+/* Burger Menu */
+.burgerMenu {
+  display: none;
+}
+
+/* Social Icons */
+.socialIcons {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  /* Adjust Navbar Container padding */
+  .navbarContainer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Hide Desktop Menu on smaller screens */
+  .desktopMenu {
+    display: none;
+  }
+
+  /* Show Burger Menu */
+  .burgerMenu.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide Logo in Mobile Menu */
+  .logo.hide {
+    display: none;
+    opacity: 0;
+  }
+
+  /* Show Mobile Menu */
+  .mobileMenu.show {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Navbar Container */
+    .navbarContainer {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Top Section */
+    .top {
+      width: 100%;
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 24px;
+      justify-content: space-between;
+    }
+
+    /* Navbar Links */
+    .navbarLinks {
+      flex: 0 0 auto;
+      display: flex;
+      align-self: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: center;
+      /* Adjust margin for small body text */
+      .bodySmall {
+        width: 100%;
+        margin-bottom: 16px;
+        border-bottom:1px solid #080a45;
+      }
+    }
+
+    /* Buttons */
+    .Buttons {
+      margin-top: 16px;
+    }
+
+    /* Social Icons */
+    .SocialIcons {
+      .socialIcons {
+        margin-right: 32px;
+      }
+    }
+  }
+}
