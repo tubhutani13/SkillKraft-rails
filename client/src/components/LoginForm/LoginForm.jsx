@@ -92,6 +92,9 @@ function LoginForm() {
             </div>
           </div>
           {errors && <div className={`error ${errors ? '' : 'hidden'}`}>{errors}</div>}
+          <div className="forgot-password-link">
+              <Link to="/forgot-password">Forgot password?</Link>
+            </div>
           <button type="submit">Login</button>
         </form>
       </div>

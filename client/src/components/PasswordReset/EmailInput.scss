@@ -1,0 +1,33 @@
+.EmailInputForm {
+    margin: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .EmailInputForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: large;
+  }
+  
+  .EmailInputForm button {
+    align-self: flex-end;
+    color: white;
+    background-color: #080a45;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .EmailInputForm button:hover {
+    background-color: #040721;
+  }
+  

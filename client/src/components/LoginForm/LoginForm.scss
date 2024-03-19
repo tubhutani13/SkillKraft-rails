@@ -156,6 +156,22 @@
   transition-delay: 0.5s;
 }
 
+.forgot-password-link {
+  text-align: right;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-bottom: 10px;
+}
+
+.forgot-password-link a {
+  color: black; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
 @media (max-width: 768px) {
   /* Hide LoginImageContainer and LoginImage */
   .LoginImageContainer {

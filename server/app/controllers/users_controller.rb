@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user, only: [:create]
+
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.verification_email(@user).deliver_now
-      render json: { message: 'User Created successfully' }, status: :created
+      UserMailer.email_verification(@user.id).deliver_now
+      render json: { message: "User Created successfully" }, status: :created
     else
       render json: { errors: @user.errors.messages }, status: :unprocessable_entity
     end
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      render json: { message: 'User updated successfully' }, status: :ok
+      render json: { message: "User updated successfully" }, status: :ok
     else
       render json: { errors: current_user.errors.messages }, status: :unprocessable_entity
     end
@@ -43,9 +44,9 @@ class UsersController < ApplicationController
     @user = current_user
     if @user && !@user.email_verified?
       UserMailer.verification_email(@user).deliver_now
-      render json: { message: 'Verification email resent successfully' }, status: :ok
+      render json: { message: "Verification email resent successfully" }, status: :ok
     else
-      render json: { error: 'User not found or already verified' }, status: :unprocessable_entity
+      render json: { error: "User not found or already verified" }, status: :unprocessable_entity
     end
   end
 
