@@ -9,6 +9,7 @@ function EditProfileForm({ user, setIsEditing, onProfileUpdate }) {
         username: user.username,
         email: user.email,
         name: user.name,
+        bio: user.bio,
     });
 
     const handleInputChange = (e) => {
@@ -47,6 +48,17 @@ function EditProfileForm({ user, setIsEditing, onProfileUpdate }) {
             {errors.username && <div className={`error ${errors ? '' : 'hidden'}`}>{'* Username ' + errors.username}</div>}
             </div>
             <div>
+                <label htmlFor="bio">Bio:</label>
+                <input
+                    type="text"
+                    id="bio"
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleInputChange}
+                    required />
+            {errors.bio && <div className={`error ${errors ? '' : 'hidden'}`}>{'* bio ' + errors.bio}</div>}
+            </div>
+            <div>
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
@@ -56,17 +68,6 @@ function EditProfileForm({ user, setIsEditing, onProfileUpdate }) {
                     onChange={handleInputChange}
                     required />
             {errors.name && <div className={`error ${errors ? '' : 'hidden'}`}>{'* name ' + errors.name}</div>}
-            </div>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required />
-            {errors.email && <div className={`error ${errors ? '' : 'hidden'}`}>{'* Email ' + errors.email}</div>}
             </div>
             <button type="submit">Save Changes</button>
         </form>

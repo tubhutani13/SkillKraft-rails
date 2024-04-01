@@ -4,7 +4,7 @@ namespace :db do
   desc 'Generate random data for users'
   task generate_random_data: :environment do
     @data = 0
-    10.times do
+    30.times do
       user = User.create!(
         username: Faker::Internet.unique.username,
         email: Faker::Internet.unique.email,

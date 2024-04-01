@@ -14,7 +14,7 @@ import useMessage from '../../hooks/useMessage';
 function Profile({ user, setUser, skills }) {
   const { handleMessage } = useMessage();
   let navigate = useNavigate(); 
-  const { username, email, name, learning_skill_ids, expert_skill_ids, profile_picture } = user;
+  const { username, email, name, bio, learning_skill_ids, expert_skill_ids, profile_picture } = user;
   const [editProfile, setEditProfile] = useState(false);
 
   const displaySkills = (selectedSkills) => {
@@ -85,7 +85,7 @@ function Profile({ user, setUser, skills }) {
         {editProfile ? (
           <EditProfileForm user={user} setIsEditing={setEditProfile} onProfileUpdate={handleProfileUpdate}/>
         ) : (
-          <ProfileInfo username={username} email={email} name={name} />
+          <ProfileInfo username={username} email={email} name={name} bio={bio} />
         )}
       </div>
     </div><div className='profile-skills-container'>

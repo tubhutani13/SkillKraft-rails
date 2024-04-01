@@ -18,11 +18,20 @@ Rails.application.routes.draw do
       post :resend_verification_email
     end
   end
-  put '/update_user', to: 'users#update'
-  post '/email-verify/:verification_token', to: 'email_verifications#verify_email', as: 'verify_email'
-  resources :skills, only: [:index]
-  resources :password_resets, only: [:create, :update]
-  post '/login', to: 'sessions#create'
   post '/signup', to: 'users#create'
+  put '/update_user', to: 'users#update'
   get '/me', to: 'users#me'
+  post '/email-verify/:verification_token', to: 'email_verifications#verify_email', as: 'verify_email'
+  post '/password-confirm/:password_reset_token', to: 'password_resets#update', as: 'password_confirm'
+  post '/login', to: 'sessions#create'
+
+  resources :skills, only: [:index]
+  resources :password_resets, only: [:create]
+  resources :contents
+  resources :connection_requests, only: %i[create update destroy] do
+    collection do
+      get :received_connection_requests
+      get :sent_connection_requests
+    end
+  end
 end

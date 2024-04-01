@@ -9,6 +9,8 @@ import useAuth from "./hooks/useAuth.js";
 import Skills from "./pages/Skills/Skills.jsx";
 import EmailVerify from "./pages/EmailVerify/EmailVerify.jsx"
 import PasswordReset from './pages/PasswordReset/PasswordReset.jsx'
+import PeoplePage from "./pages/PeoplePage/PeoplePage.jsx";
+import ContentCreationPage from "./pages/ContentCreationPage/ContentCreationPage.jsx";
 
 function App() {
   const { token } = useAuth();
@@ -24,6 +26,8 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="me" Component={Profile} />
             <Route path="skills" Component={Skills} />
+            <Route path="people/*" element={<PeoplePage />}/>
+            <Route path="content/*" element={<ContentCreationPage />}/>
           </Route>
           {/* <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}

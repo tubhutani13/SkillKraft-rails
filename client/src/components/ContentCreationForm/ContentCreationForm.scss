@@ -1,0 +1,75 @@
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.content-creation-form {
+  .form-group {
+    margin-bottom: 20px;
+
+    .label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button.create-button {
+  text-align: right;
+  border-radius: 20px;
+  background-color: #080a45;
+  color: #fff;
+}
+
+.button.cancel-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Change cancel button */
+.button.cancel-button {
+  color: red;
+  background-color: transparent;
+}
+
+.button.cancel-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+  
+}

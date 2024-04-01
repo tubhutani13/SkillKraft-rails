@@ -3,5 +3,13 @@
   }
 
   .slider {
-    margin: 20px 20px;
+    margin: 20px auto;
+    width: 90%;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    .slick-arrow{
+      margin: 10px;
+    }
   }

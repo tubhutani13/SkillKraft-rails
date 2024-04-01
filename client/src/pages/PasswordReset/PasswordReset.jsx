@@ -9,7 +9,7 @@ const PasswordResetPage = () => {
       <h1>Password Reset</h1>
       <Routes>
         <Route path="/" element={<EmailInput />} />
-        <Route path="/new-password" element={<NewPasswordInput />} />
+        <Route path=":password_reset_token/new-password" element={<NewPasswordInput />} />
       </Routes>
     </div>
   );

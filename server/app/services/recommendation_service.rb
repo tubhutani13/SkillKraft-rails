@@ -9,7 +9,7 @@ class RecommendationService
   def self.calculate_recommendations(mentee)
     mentee_skill_ids = mentee.learning_skill_ids
 
-    mentors = User.includes(:expert_skills).joins(expert_skills: :expert_users).where(expert_skills: { id: mentee_skill_ids })
+    mentors = User.where.not(id: mentee.id).includes(:expert_skills).joins(expert_skills: :expert_users).where(expert_skills: { id: mentee_skill_ids })
                   .distinct
 
     mentor_similarities = {}

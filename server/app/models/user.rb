@@ -26,6 +26,8 @@ class User < ApplicationRecord
   has_many :connection_requests_sent, foreign_key: 'mentee_id', class_name: 'ConnectionRequest'
   has_many :connection_requests_received, foreign_key: 'mentor_id', class_name: 'ConnectionRequest'
 
+  has_many :contents
+
   accepts_nested_attributes_for :learning_skills, allow_destroy: true
   accepts_nested_attributes_for :expert_skills, allow_destroy: true
 
@@ -38,5 +40,13 @@ class User < ApplicationRecord
   def generate_verification_token
     self.verified = false
     self.verification_token = SecureRandom.urlsafe_base64
+  end
+
+  def password_reset_expired?
+    return false if password_reset_sent_at.nil?
+
+    expiration_period = 1.hour
+
+    password_reset_sent_at < expiration_period.ago
   end
 end

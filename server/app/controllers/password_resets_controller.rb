@@ -1,7 +1,7 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :authenticate_user
   before_action :find_user_by_email, only: [:create]
-  before_action :find_user_by_reset_token, only: [:edit, :update]
+  before_action :find_user_by_reset_token, only: [:update]
 
   def create
     if @user
@@ -14,6 +14,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
+    debugger
     if @user && !@user.password_reset_expired?
       if @user.update(user_params)
         @user.update(password_reset_token: nil, password_reset_sent_at: nil)
@@ -33,7 +34,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def find_user_by_reset_token
-    @user = User.find_by(password_reset_token: params[:id])
+    @user = User.find_by(password_reset_token: params[:password_reset_token])
   end
 
   def user_params

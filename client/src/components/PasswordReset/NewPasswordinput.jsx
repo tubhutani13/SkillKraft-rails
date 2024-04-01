@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './NewPasswordInput.scss'
+import api from '../../utils/api';
+import useMessage from '../../hooks/useMessage';
+import {
+  containsLowercase,
+  containsUppercase,
+  containsDigit,
+  containsSpecialCharacter,
+  isLengthValid,
+  isPasswordValid,
+} from "../../utils/PasswordUtils";
 
 const NewPasswordInput = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const { password_reset_token } = useParams();
+  const { handleMessage } = useMessage();
+  const response_message = { data: {message: "Password Changed successfully" }}
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,11 +30,28 @@ const NewPasswordInput = () => {
       setPasswordMatch(password === value);
     }
   };
-
-  const handleSubmit = (e) => {
+  const passwordEntered = password.trim() !== "";
+  
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Add your password validation logic here
-    // Navigate to the next step if passwords match and meet other criteria
+    if (!isPasswordValid(password)) {
+      console.error("Password is not valid");
+      return;
+    }
+    try {
+      await api.post(`/password-confirm/${password_reset_token}`,{
+        user: {
+        password: password,
+        password_confirmation: confirmPassword
+        }
+      });
+      handleMessage(response_message)
+        navigate("/login", {
+      });
+    
+    } catch (error) {
+      console.error("Password Update failed:", error);
+    }
   };
 
   return (
@@ -34,6 +64,37 @@ const NewPasswordInput = () => {
         onChange={handleChange}
         required
       />
+      {passwordEntered && (
+            <ul className="error-list">
+              <li
+                className={containsLowercase(password) ? "valid" : "invalid"}
+              >
+                Must contain at least one lowercase letter
+              </li>
+              <li
+                className={containsUppercase(password) ? "valid" : "invalid"}
+              >
+                Must contain at least one uppercase letter
+              </li>
+              <li
+                className={containsDigit(password) ? "valid" : "invalid"}
+              >
+                Must contain at least one number
+              </li>
+              <li
+                className={containsSpecialCharacter(password)
+                  ? "valid"
+                  : "invalid"}
+              >
+                Must contain at least one symbol
+              </li>
+              <li
+                className={isLengthValid(password) ? "valid" : "invalid"}
+              >
+                Must be at least 8 characters long
+              </li>
+            </ul>
+          )}
       <input
         type="password"
         name="confirmPassword"

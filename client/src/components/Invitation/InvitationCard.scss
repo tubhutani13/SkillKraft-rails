@@ -1,0 +1,72 @@
+.invitation-card-container {
+  border-bottom: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 10px;
+}
+
+.invitation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.invitation-card-picture {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.invitation-card-details {
+  margin-left: 15px;
+}
+
+.invitation-card-buttons {
+  display: flex;
+  gap: 1px;
+}
+
+.accept-button,
+.decline-button {
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+
+}
+
+.accept-button {
+  background-color: #0a134e;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.decline-button {
+  background-color: #080a45;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.withdraw-button {
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 20px;
+  background-color: #080a45;
+}
+.accept-button:hover,
+.decline-button:hover,
+.withdraw-button:hover {
+  border: #0a134e 1px solid;
+  color: black;
+  background-color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease,
+
+}

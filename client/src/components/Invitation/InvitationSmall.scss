@@ -1,0 +1,23 @@
+.invitation-small{
+  width: 90%;
+  margin: 120px auto;
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  flex-direction: column;
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  p {
+    font-size: 20px;
+    margin: 2px ;
+  }
+  .bio {
+    font-size: small;
+  }
+}

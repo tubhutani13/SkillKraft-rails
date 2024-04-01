@@ -1,19 +1,34 @@
 import React from 'react';
+import profilePicture from '../../assets/default-profile-image.png';
 import './ProfileCard.scss'
+import api from '../../utils/api';
 
 function ProfileCard({ user }) {
-    const { username, name, profile_picture } = user;
+  const { username, bio, name, profile_picture } = user;
+  const handleConnect = async () => {
+      try {
+          const response = await api.post("/connection_requests", {username: username });
+      } catch (error) {
+          console.error("Error sending connection request:", error);
+          // Optionally, handle error
+      }
+  };
+
 
     return (
         <div className="profile-card-container">
             <div className="profile">
-                <img src={profile_picture} alt="ProfileCard" className="profile-card-picture" />
+            {profile_picture ? (
+              <img src={profile_picture} alt="ProfileCard" className="profile-card-picture" />
+            ) : (
+              <img src={profilePicture} alt="Profile" className="profile-card-picture" />
+            )}
                 <div className="profile-card-details">
-                    <h2>{name}</h2>
-                    <p className="username">{username}</p>
+                    <h2 className='name'>{name}</h2>
+                    <p className="bio">{bio}</p>
                 </div>
             </div>
-            <button className="connect-button">
+            <button className="connect-button" onClick={handleConnect}>
                 <svg
                     className="connect-icon"
                     xmlns="http://www.w3.org/2000/svg"
