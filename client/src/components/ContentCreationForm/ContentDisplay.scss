@@ -1,0 +1,23 @@
+.content-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.content-body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.content-error {
+  color: red;
+  font-weight: bold;
+}

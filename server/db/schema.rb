@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_111538) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_054425) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -82,6 +83,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_111538) do
     t.index ["user_id"], name: "index_contents_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms_users", id: false, force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["room_id", "user_id"], name: "index_rooms_users_on_room_id_and_user_id"
+    t.index ["user_id", "room_id"], name: "index_rooms_users_on_user_id_and_room_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -116,4 +140,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_111538) do
   add_foreign_key "connection_requests", "users", column: "mentor_id"
   add_foreign_key "connections", "users", column: "mentee_id"
   add_foreign_key "connections", "users", column: "mentor_id"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
 end

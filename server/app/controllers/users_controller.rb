@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by!(username: params[:username])
     render json: UserSerializer.new(@user).serializable_hash
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def recommended_mentors
     mentee = current_user
     recommended_mentors = RecommendationService.recommended_mentors_for_mentee(mentee)
-    render json: recommended_mentors
+    render json: recommended_mentors, each_serializer: UserSerializer
   end
 
   def me

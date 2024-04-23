@@ -1,5 +1,7 @@
 class Content < ApplicationRecord
-    belongs_to :user
+  CONTENT_STATUS = %i[draft private public].freeze
+  belongs_to :user
 
-    has_rich_text :body
+  has_rich_text :body
+  enum status: CONTENT_STATUS, _suffix: true
 end

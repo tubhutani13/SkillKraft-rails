@@ -11,6 +11,7 @@ import EmailVerify from "./pages/EmailVerify/EmailVerify.jsx"
 import PasswordReset from './pages/PasswordReset/PasswordReset.jsx'
 import PeoplePage from "./pages/PeoplePage/PeoplePage.jsx";
 import ContentCreationPage from "./pages/ContentCreationPage/ContentCreationPage.jsx";
+import UserProfilePage from "./pages/ProfilePage/UserProfilePage.jsx";
 
 function App() {
   const { token } = useAuth();
@@ -23,11 +24,12 @@ function App() {
           <Route path="login" element={token ? <Navigate to="/" /> : <Login />} />
           <Route path="/forgot-password/*" element={<PasswordReset />} />
           <Route path="email-verify/:verification_token" element={<EmailVerify />}/>
+            <Route path="content/*" element={<ContentCreationPage />}/>
           <Route element={<RequireAuth />}>
             <Route path="me" Component={Profile} />
             <Route path="skills" Component={Skills} />
+            <Route path="users/:username" Component={UserProfilePage} />
             <Route path="people/*" element={<PeoplePage />}/>
-            <Route path="content/*" element={<ContentCreationPage />}/>
           </Route>
           {/* <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}

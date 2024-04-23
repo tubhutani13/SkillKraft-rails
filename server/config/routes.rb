@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :users, only: [:show] do
+  resources :users, param: :username, only: [:show] do
     collection do
       get :skills
       get :recommended_mentors
@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   resources :skills, only: [:index]
   resources :password_resets, only: [:create]
   resources :contents
+  resources :rooms, only: [:index] do
+    collection do
+      get :show_or_create
+    end
+  end
+
   resources :connection_requests, only: %i[create update destroy] do
     collection do
       get :received_connection_requests

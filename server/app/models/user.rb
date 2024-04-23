@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true
 
   before_create :generate_verification_token
+  before_create :set_default_profile_picture
 
   has_many :skills_users
   has_many :learning_skills, lambda {
@@ -27,6 +28,9 @@ class User < ApplicationRecord
   has_many :connection_requests_received, foreign_key: 'mentor_id', class_name: 'ConnectionRequest'
 
   has_many :contents
+
+  has_and_belongs_to_many :rooms
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
 
   accepts_nested_attributes_for :learning_skills, allow_destroy: true
   accepts_nested_attributes_for :expert_skills, allow_destroy: true
@@ -48,5 +52,10 @@ class User < ApplicationRecord
     expiration_period = 1.hour
 
     password_reset_sent_at < expiration_period.ago
+  end
+
+  def set_default_profile_picture
+    avatar_io = URI.open(Faker::Avatar.image)
+    profile_picture.attach(io: avatar_io, filename: 'default.jpg') unless profile_picture
   end
 end
